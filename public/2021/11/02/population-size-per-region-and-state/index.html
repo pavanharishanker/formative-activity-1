@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.88.1" />
+
+
+<title>Population size per region and state - A Hugo website</title>
+<meta property="og:title" content="Population size per region and state - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Population size per region and state</h1>
+
+    
+    <span class="article-date">2021-11-02</span>
+    
+
+    <div class="article-content">
+      <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore <em>magna aliqua</em>. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<pre tabindex="0"><code class="language-{r" data-lang="{r">knitr::opts_chunk$set(collapse = TRUE)
+
+</code></pre><pre tabindex="0"><code class="language-{r,include=F}" data-lang="{r,include=F}">library(highcharter)
+library(tidyverse)
+US_states77&lt;-data.frame(state.x77)%&gt;%
+rownames_to_column(.,var=&quot;State&quot;)%&gt;%
+tibble(Region=state.region,Division=state.division,Longitude=state.center$x,Latitude=state.center$y)
+
+</code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">
+US_states77%&gt;%
+hchart(type=&quot;scatter&quot;,hcaes(x=Income,y=Life.Exp,group=Region))%&gt;%
+hc_xAxis(title=list(text=&quot;Percapitaincome&quot;))%&gt;%
+hc_yAxis(title=list(text=&quot;Lifeexpectancy&quot;))%&gt;%
+hc_title(text=&quot;&lt;b&gt;IncomevsLifeexpectancyofUSregions&lt;/b&gt;&quot;,align=&quot;center&quot;,style=list(color=&quot;black&quot;))%&gt;%
+hc_tooltip(table=TRUE,useHTML=TRUE,valueDecimals=1,formatter=JS(&quot;function(){return'Income:'+this.x+'&lt;br&gt;Life.Exp:'+this.y+'';}&quot;))
+
+</code></pre>
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
